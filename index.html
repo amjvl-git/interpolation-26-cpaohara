@@ -149,9 +149,53 @@ function gameLoop(timestamp) {
     let seconds = timestep / 1000;
     onUpdate(seconds); 
     onRender();
+    moveNPC();
 
     lastRender = timestamp;
     window.requestAnimationFrame(gameLoop);
+}
+
+function moveNPC(){
+  var result;
+  //Which points are being calculated
+  if(sumts >= 0 && sumts <= 1){
+    result = coordCalc(200, 150, 600, 150, t)
+  }
+  else if(sumts >= 1 && sumts <= 2){
+    result = coordCalc(p2x, p2y, p3x, p3y, t)
+  }
+  else if(sumts >= 2 && sumts <= 3){
+    result = coordCalc(p3x, p3y, p4x, p4y, t)
+  }
+  else if(sumts >= 3 && sumts <= 4){
+    result = coordCalc(p4x, p4y, p1x, p1y, t)
+  }
+
+  if(sumts >= 4){
+    sumts = 0
+  }
+
+  //Change t
+  if(t >= 1){
+    t = 0
+  }
+  else{
+    t += 0.01
+  }
+
+  x = result[0]
+  y = result[1]
+}
+
+function coordCalc(point1x, point1y, point2x, point2y, time){
+  var xCalc = point1x + time * (point2x - point1x);
+  var yCalc = point1y + time * (point2y - point1y);
+
+  console.log(point1x, point1y, point2x, point2y, t)
+  console.log(200 + time * (600 - 200))
+  console.log(xCalc, yCalc)
+
+  return {xCalc, yCalc};
 }
 
 var lastRender = 0;

@@ -1,0 +1,28 @@
+On selected points:
+increase t every frame and save new coords to x and y
+
+IF t >= 1:
+move to next points
+
+IF t >= 1 and B == p4
+A == p4
+B == p1
+
+t go from 0 to 4
+
+
+0<=t<=1:
+A == p1
+B == p2
+
+1<=t<=2:
+A == p2
+B == p3
+
+2<=t<=3:
+A == p3
+B == p4
+
+3<=t<=4:
+A == p4
+B == p1
